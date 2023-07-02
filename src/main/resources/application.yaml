@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: projects-online-backend
+  servlet:
+    multipart:
+      max-file-size: 1TB
+      max-request-size: 1TB
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak-projects-online.azurewebsites.net/auth/realms/ProjectsOnline
+  datasource:
+    url: jdbc:sqlserver://projects-online.database.windows.net:1433;database=projects-online;user=adminSQL@projects-online;password=SQLdb10!;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: update
+  azure:
+    storage:
+      account-name: blobprojectsonline
+      account-key: nNB3Q9pv5TT0Q0JBIrk8SSshN+LU10gOyGoNplWoDT69iBU4299ReEP/J9meDr4oyx6hfNkxFCZ1+AStAayl8g==
+      blob-endpoint: blobprojectsonline.blob.core.windows.net
+      default-endpoints-protocol: https
+
+server:
+  compression:
+    enabled: true
+  port: 9090
+
+client:
+  url: https://projectsonline.azurewebsites.net/
+
+logging:
+  level:
+    it:
+      sdcc: DEBUG
+    org:
+      springframework: INFO
